@@ -1,6 +1,7 @@
 import { BsGithub, BsMoonStars, BsBook, BsSun } from "react-icons/bs";
 import { useContext } from "react";
 import { Tooltip } from "react-tooltip";
+import { Link } from "react-router-dom";
 import { AppContext, type SchemaFormat } from "../contexts/AppContext";
 import FullscreenToggleButton from "./FullscreenToggleButton";
 
@@ -11,13 +12,14 @@ const NavigationBar = () => {
   return (
     <nav className="h-[8vh] flex justify-between items-center shadow-lg relative z-10">
       <div className="flex items-center text-center select-none">
-        <img
-          src={theme === "dark" ? "logo-dark.svg" : "logo-light.svg"}
-          alt="Studio JSON Schema"
-          className="w-15 h-15 md:w-15 md:h-15"
-          draggable="false"
-        />
-
+        <Link to="/">
+          <img
+            src={theme === "dark" ? "logo-dark.svg" : "logo-light.svg"}
+            alt="Studio JSON Schema"
+            className="w-15 h-15 md:w-15 md:h-15"
+            draggable="false"
+          />
+        </Link>
         <div className="flex font-mono flex-col">
           <span className="text-2xl font-bold  text-[var(--tool-name-color)]">
             Studio
@@ -74,10 +76,8 @@ const NavigationBar = () => {
           </a>
         </li>
         <li>
-          <a
-            href="https://github.com/jagpreetrahi/visualize-json-schema?tab=readme-ov-file#json-schema-visualizer"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/docs"
             className="text-xl"
             data-tooltip-id="learn-keywords"
           >
@@ -87,7 +87,7 @@ const NavigationBar = () => {
               content="Docs"
               style={{ fontSize: "10px" }}
             />
-          </a>
+          </Link>
         </li>
         <li>
           <FullscreenToggleButton />
