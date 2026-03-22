@@ -35,7 +35,7 @@ import { resolveCollisions } from "../utils/resolveCollisions";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { CgClose } from "react-icons/cg";
 import { extractKeywords } from "../utils/searchNodeHelpers";
-
+import { topoSortDefs } from "../utils/topoSortDefs";
 const nodeTypes = { customNode: CustomNode };
 const dagreGraph = new dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
 
@@ -124,7 +124,7 @@ const GraphView = ({
       const { ast, schemaUri } = compiledSchema;
       // console.log(ast)
       processAST({
-        ast: sortAST(ast),
+        ast: sortAST(topoSortDefs(ast)),
         schemaUri,
         nodes,
         edges,
