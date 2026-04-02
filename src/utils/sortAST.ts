@@ -24,3 +24,4 @@ export const sortAST = (ast: AST) => {
     }
     return sortedAst;
 }
+console.log("test")
