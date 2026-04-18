@@ -89,8 +89,14 @@ const saveSchemaJSON = (key: string, schema: JSONSchema) => {
 };
 
 const MonacoEditor = () => {
-  const { theme, isFullScreen, containerRef, schemaFormat, changeSchemaFormat, selectedNode } =
-    useContext(AppContext);
+  const {
+    theme,
+    isFullScreen,
+    containerRef,
+    schemaFormat,
+    changeSchemaFormat,
+    selectedNode,
+  } = useContext(AppContext);
 
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const editorPanelRef = useRef<ImperativePanelHandle>(null);
@@ -177,7 +183,6 @@ const MonacoEditor = () => {
 
       editorRef.current.revealPositionInCenter(startPos);
       editorRef.current.setPosition(startPos);
-      editorRef.current.focus();
 
       const decoration = {
         range: new (window as any).monaco.Range(
@@ -285,9 +290,7 @@ const MonacoEditor = () => {
         isAnimating ? "panel-animating" : ""
       }`}
     >
-      {isFullScreen && (
-        <NavigationBar />
-      )}
+      {isFullScreen && <NavigationBar />}
       <PanelGroup direction="horizontal">
         <Panel
           className="flex flex-col"
@@ -298,7 +301,9 @@ const MonacoEditor = () => {
           <div className="flex items-center gap-2 px-2 py-1 bg-[var(--validation-bg-color)]">
             <select
               value={schemaFormat}
-              onChange={(e) => changeSchemaFormat(e.target.value as SchemaFormat)}
+              onChange={(e) =>
+                changeSchemaFormat(e.target.value as SchemaFormat)
+              }
               className="ml-auto flex-shrink-0 bg-[var(--bg-color)] text-[var(--text-color)] text-sm outline-none cursor-pointer border border-[var(--popup-border-color)] rounded-sm"
             >
               <option value="json">JSON</option>
@@ -327,7 +332,7 @@ const MonacoEditor = () => {
         <PanelResizeHandle className="w-[1px] bg-gray-400 relative">
           <div>
             <EditorToggleButton
-              className={"absolute top-2 left-2 z-10"}
+              className={"absolute top-2 left-2 z-1"}
               editorVisible={editorVisible}
               toggleEditorVisibility={toggleEditorVisibility}
             />
